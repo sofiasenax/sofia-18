@@ -230,7 +230,7 @@ var G={"18 Roses":"Kiel Brent Garbosa,Cyrus Adrian Durian,Matt Louge Maglaqui,Pr
 "18 Candles & Treasures":"Khimberly Khate Gumila,Lois Livuel Marquez,Whey Obrar,Malkah Dara Eusebio,Jillianne Mae Mateo,Kaye Ashley Colastre,Janelle Banuelos,Jamilla Myka Manlangit,Altea Zausa,Melissa Reyes,Liane Daphne Topacio,Jennica Kim Mina,Jhaysis Maureen Nicolas,Maria Sabrina Loreto,Charlee Joy Moreno,Jellena Drew Alvarez,Alexa Mae Silvestre,Aubrei George Narag"};
 var tabs=document.getElementById('tabs'),list=document.getElementById('names');
 function show(k,anim){[].forEach.call(tabs.children,function(b){b.setAttribute('aria-selected',b.textContent===k)});
-list.className='names'+(k==='18 Roses'?' num':'');list.innerHTML=G[k].split(',').map(function(n){return '<li>'+n+'</li>'}).join('');
+list.className='names num';list.innerHTML=G[k].split(',').map(function(n){return '<li>'+n+'</li>'}).join('');
 if(anim&&window.gsap&&!rm)gsap.from(list.children,{autoAlpha:0,y:14,duration:.5,stagger:.03,ease:'power2.out'})}
 Object.keys(G).forEach(function(k,i){var b=document.createElement('button');b.type='button';b.setAttribute('role','tab');b.textContent=k;b.onclick=function(){show(k,true)};tabs.appendChild(b)});
 show('18 Roses');
