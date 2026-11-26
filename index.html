@@ -242,6 +242,9 @@ footer p{font:400 2rem/1.2 var(--script);color:var(--gold);margin:0 0 .5rem}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
 (function(){
+if('scrollRestoration' in history)history.scrollRestoration='manual';
+if(location.hash)history.replaceState(null,'',location.pathname+location.search);
+document.documentElement.style.scrollBehavior='auto';window.scrollTo(0,0);document.documentElement.style.removeProperty('scroll-behavior');
 var sky=document.getElementById('sky'),rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
 for(var i=0;i<110;i++){var e=document.createElement('i'),z=Math.random()<.12;e.className=z?'spark':'star';var s=z?10+Math.random()*14:1+Math.random()*2.4;
 e.style.cssText='left:'+Math.random()*100+'%;top:'+Math.random()*100+'%;width:'+s+'px;height:'+s+'px;--d:'+(2+Math.random()*4)+'s;--l:-'+Math.random()*5+'s';sky.appendChild(e)}
