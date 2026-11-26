@@ -155,7 +155,7 @@ footer p{font:400 2rem/1.2 var(--script);color:var(--gold);margin:0 0 .5rem}
 @media(max-height:760px){.note{display:none}.cd{margin:.4rem 0}}
 @media(max-width:860px){
  .hero{grid-template-columns:1fr;grid-template-rows:auto 1fr;height:auto;min-height:100svh;padding-top:calc(5.5rem + env(safe-area-inset-top,0px));gap:0;align-content:start}
- .hero{padding-bottom:1rem}.pic{order:-1;width:auto;justify-self:center;transform:translateX(-2vw)}.pic img{height:32svh;width:min(92vw,calc(32svh*1.45));aspect-ratio:auto;object-fit:contain;object-position:50% bottom;-webkit-mask-image:linear-gradient(#000 80%,transparent);mask-image:linear-gradient(#000 80%,transparent)}.pic::before{left:62%;top:35%;width:150%}.txt{margin-top:-6svh;position:relative}.note{display:none}
+ .hero{padding-bottom:1rem}.pic{order:-1;width:auto;justify-self:center;transform:translateX(-2vw)}.pic img{height:32svh;width:min(92vw,calc(32svh*1.45));aspect-ratio:auto;object-fit:contain;object-position:50% bottom;transform:scale(1.06);transform-origin:center bottom;-webkit-mask-image:linear-gradient(#000 80%,transparent);mask-image:linear-gradient(#000 80%,transparent)}.pic::before{left:62%;top:35%;width:150%}.txt{margin-top:-6svh;position:relative}.note{display:none}
  .moon{top:5rem;left:5%;right:auto}.logo{font-size:1.4rem}@media(max-height:720px){.cd{display:none}}
  header{flex-direction:column;gap:.2rem;padding:.45rem .5rem}
  nav{width:100%;max-width:100%;justify-content:space-between;flex-wrap:nowrap;gap:0 .15rem;overflow-x:hidden;overflow-y:hidden;white-space:nowrap}
@@ -260,7 +260,7 @@ show('18 Roses');
 var tr=document.getElementById('track'),sl=[].slice.call(tr.children),dts=document.getElementById('dots'),ix=0,hov=false;
 function mark(){[].forEach.call(dts.children,function(d,i){d.classList.toggle('on',i===ix)})}
 function go(i){ix=(i+sl.length)%sl.length;tr.scrollTo({left:sl[ix].offsetLeft-(tr.clientWidth-sl[ix].clientWidth)/2,behavior:rm?'auto':'smooth'});mark()}
-sl.forEach(function(s,i){var d=document.createElement('button');d.type='button';d.setAttribute('aria-label','Photo '+(i+1));d.onclick=function(){go(i)};dts.appendChild(d)});mark();
+sl.forEach(function(s,i){var d=document.createElement('button');d.type='button';d.setAttribute('aria-label','Photo '+(i+1));d.onclick=function(){go(i)};dts.appendChild(d)});mark();go(0);
 document.querySelector('.cb.prev').onclick=function(){go(ix-1)};document.querySelector('.cb.next').onclick=function(){go(ix+1)};
 tr.addEventListener('scroll',function(){var c=tr.scrollLeft+tr.clientWidth/2,b=0,m=1e9;sl.forEach(function(s,i){var x=Math.abs(s.offsetLeft+s.clientWidth/2-c);if(x<m){m=x;b=i}});if(b!==ix){ix=b;mark()}});
 tr.addEventListener('keydown',function(e){if(e.key==='ArrowRight')go(ix+1);if(e.key==='ArrowLeft')go(ix-1)});
