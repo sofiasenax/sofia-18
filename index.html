@@ -84,6 +84,7 @@ h2{font:400 clamp(2.6rem,5vw,4.2rem)/1.1 var(--script);color:var(--gold);margin:
 .tabs button[aria-selected=true],.tabs button:hover{background:var(--gold);color:var(--ink)}
 .names{display:grid;grid-template-columns:1fr 1fr;gap:.35rem clamp(1rem,5vw,4rem);max-width:760px;margin:0 auto;padding:0;list-style:none;text-align:center}
 .names li{padding:.25rem 0;border-bottom:1px solid rgba(230,198,128,.15)}
+.names.guest{grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-flow:row;max-width:1100px;text-align:left}
 footer{text-align:center;padding:3rem var(--pad) 4rem;color:var(--mute)}
 footer p{font:400 2rem/1.2 var(--script);color:var(--gold);margin:0 0 .5rem}
 .hero{width:100%;height:100svh;min-height:0;grid-template-columns:.8fr 1.2fr;gap:clamp(1rem,3vw,3rem);padding-top:4.4rem;padding-bottom:.8rem}
@@ -102,6 +103,7 @@ footer p{font:400 2rem/1.2 var(--script);color:var(--gold);margin:0 0 .5rem}
 @keyframes met{0%{opacity:0;transform:translate(0,0) rotate(-35deg)}3%{opacity:1}13%{opacity:0;transform:translate(-560px,392px) rotate(-35deg)}100%{opacity:0}}
 .names.num{grid-auto-flow:column;grid-template-rows:repeat(9,auto);counter-reset:n;text-align:left}
 .names.num li{display:flex;gap:.7rem}.names.num li::before{counter-increment:n;content:counter(n) ".";color:var(--gold);min-width:2.2ch;text-align:right}
+.names.guest.num{grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:none;grid-auto-flow:row;max-width:1100px}
 .bio{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(1rem,3vw,3rem);align-items:center;max-width:1100px;margin:1rem auto 2.5rem}
 .bio p{margin:0}.bio .lead{font:400 clamp(2.2rem,3.6vw,3.2rem)/1.15 var(--script);color:var(--gold);margin:0 0 .6rem}
 .facts{margin:0;display:grid;gap:.7rem}.facts div{padding:.8rem 1.1rem;border-left:2px solid var(--gold);background:rgba(17,27,74,.4);border-radius:0 14px 14px 0}
@@ -249,7 +251,7 @@ var G={"18 Roses":"Kiel Brent Garbosa,Cyrus Adrian Durian,Matt Louge Maglaqui,Pr
 "Guests":"Mrs. Anabelle Batac,Mr. Joel Machobar,Mrs. Debbie Jacinto,Mrs. Maritess Cimanes,Mr. Fernan Estrada,Ms. Divina Dela Rosa,Ms. Evelyn Castillo,Mrs. Elaine Flores,Jamaica Orias,Abie Gonzaga,Jimmy Aoay,Lolet Topacio,Cindy Lazatin,Lalaine Victoria,Andrea Pedrajas,Marry Beth Batayo,Emie Velaquez,Vec Velasquez,Ronald Deinla,Rose Deinla,Maricel Arsolon,Glenda Reyes,Ma. Elena Padua,Jocelyn Boñon,Pilipina De Leon-Basco,Henzerine Xenia Ong,Dhey Garcia,Pen Garcia,Mila Reyes,Lito Yano,Tito John Reyes,Jomar Reyes,Mark Johann Reyes,Tita Marilyn Miguel,Tito Mario Miguel,Paul Gabriel Miguel,Vincent Elijah Miguel,Ma. Pauline Venice Miguel,Sandy Reyes"};
 var tabs=document.getElementById('tabs'),list=document.getElementById('names');
 function show(k,anim){[].forEach.call(tabs.children,function(b){b.setAttribute('aria-selected',b.textContent===k)});
-list.className='names num';list.innerHTML=G[k].split(',').map(function(n){return '<li>'+n+'</li>'}).join('');
+list.className=k==='Guests'?'names num guest':'names num';list.innerHTML=G[k].split(',').map(function(n){return '<li>'+n+'</li>'}).join('');
 if(anim&&window.gsap&&!rm)gsap.from(list.children,{autoAlpha:0,y:14,duration:.5,stagger:.03,ease:'power2.out'})}
 Object.keys(G).forEach(function(k,i){var b=document.createElement('button');b.type='button';b.setAttribute('role','tab');b.textContent=k;b.onclick=function(){show(k,true)};tabs.appendChild(b)});
 show('18 Roses');
